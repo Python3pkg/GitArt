@@ -3,7 +3,7 @@ import subprocess
 import datetime
 import time
 
-from config import MARKED_DAYS, HEADER, HEART
+from .config import MARKED_DAYS, HEADER, HEART
 
 
 class ErrorMessage(Exception):
@@ -113,7 +113,7 @@ class GitHeart(object):
         for days in MARKED_DAYS:
             amend_date = (
                 self.end_date - datetime.timedelta(days)).strftime("%Y-%m-%d %H:%M:%S")
-            for commit_number_in_a_day in xrange(0, self.max_commits):
+            for commit_number_in_a_day in range(0, self.max_commits):
                 commit_cumalative_count += 1
                 subprocess.check_call(
                     ['git', 'commit', '--amend', "--date='<" + amend_date + " + 0530 >' ", '-C',
